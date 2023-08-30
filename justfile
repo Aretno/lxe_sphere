@@ -1,0 +1,18 @@
+# -*-Makefile-*-
+
+test:
+  just run macs/run.mac
+
+build:
+  cmake -S src -B build/app
+  cmake --build build/app
+
+run N='': build
+  #!/usr/bin/env sh
+  # CHANGEME-my-n4-app: change my-n4-app with a name that better suits your
+  # project. At the same time you must change it in the `src/CMakeLists.txt`.
+  ./build/app/my-n4-app {{N}}
+  exit $?
+
+clean:
+  rm build -rf
