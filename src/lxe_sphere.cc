@@ -7,8 +7,9 @@
 #include "generator.hh"
 
 #include <G4SystemOfUnits.hh>   // physical units such as `m` for metre
-#include <FTFP_BERT.hh>         // our choice of physics list
+#include <G4GenericMessenger.hh>
 
+#include <FTFP_BERT.hh>         // our choice of physics list
 #include <G4EmStandardPhysics_option4.hh>
 #include <G4OpticalPhysics.hh>
 #include <G4RadioactiveDecayPhysics.hh>
@@ -43,20 +44,30 @@ n4::actions* create_actions(unsigned& n_event) {
  -> set(  new n4::stepping_action{my_stepping_action} );
 }
 
+
 int main(int argc, char** argv)
 {
 	unsigned n_event = 0;
 	
+  // Physics lists
 	G4int verbosity=0;
     auto physics_list = new FTFP_BERT{verbosity};
     physics_list ->  ReplacePhysics(new G4EmStandardPhysics_option4());
     physics_list -> RegisterPhysics(new G4OpticalPhysics{});
     physics_list -> RegisterPhysics(new G4RadioactiveDecayPhysics);
 
+  // Messenger
+	auto geom_messenger = new G4GenericMessenger(nullptr,"/geom/", "Geometry parameters");
+	double sphere_rad_ = 20.*cm;
+	geom_messenger->DeclareProperty("sphere_rad", sphere_rad_, "Sphere radius");
+  //Lambda function to create geometry constructor with input parameters
+  auto build_geometry = [sphere_rad_] () { return semisphere(sphere_rad_); };
+
+  // Execute
 	auto run_manager = n4::run_manager::create()	
 	.physics(physics_list)
-	.geometry(semisphere)
-  	.actions(create_actions(n_event));
+	.geometry(build_geometry)
+  .actions(create_actions(n_event));
 
   	n4::ui(argc, argv);
 }

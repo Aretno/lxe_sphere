@@ -1,7 +1,7 @@
 #include "geometry.hh"
 
-G4PVPlacement* semisphere() {
-  double sphere_rad   = 20.*cm;
+G4PVPlacement* semisphere(double sphere_rad) {
+  //double sphere_rad   = 20.*cm;
   double vessel_thick = 5  *mm;
   double el_rad       = 38.*mm;
   double el_gap       = 5  *mm;
