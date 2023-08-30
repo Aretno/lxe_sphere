@@ -24,8 +24,10 @@ else()
 endif()
 
 include(${Geant4_USE_FILE})
+file(GLOB sources ${PROJECT_SOURCE_DIR}/*.cc)
+file(GLOB headers ${PROJECT_SOURCE_DIR}/*.hh)
 
-add_executable(${EXE} lxe_sphere.cc)
+add_executable(${EXE} lxe_sphere.cc ${sources} ${headers})
 
 target_link_libraries(
   ${EXE}
