@@ -9,10 +9,11 @@ build:
 
 run N='': build
   #!/usr/bin/env sh
-  # CHANGEME-my-n4-app: change my-n4-app with a name that better suits your
-  # project. At the same time you must change it in the `src/CMakeLists.txt`.
-  ./build/app/my-n4-app {{N}}
+  ./build/app/lxe_sphere {{N}}
   exit $?
+
+view:
+  nix run --impure github:guibou/nixGL -- just run
 
 clean:
   rm build -rf

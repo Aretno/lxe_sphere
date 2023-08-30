@@ -1,11 +1,7 @@
 cmake_minimum_required(VERSION 3.25)
 
-# CHANGEME-project-name: Not important, but you might want to change it
-project(my-nain4-project)
-
-# CHANGEME-my-n4-app: change my-n4-app to a name that better suits your project.
-# At the same time you must change it in the justfile of the parent directory.
-set(EXE my-n4-app)
+project(lxe_sphere)
+set(EXE lxe_sphere)
 
 # ----- Generate compile_commands.json, unless otherwise instructed on CLI --
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
@@ -29,9 +25,7 @@ endif()
 
 include(${Geant4_USE_FILE})
 
-# CHANGEME-n4app.cc: change the file name n4app.cc on the following line and
-# rename the file in this directory
-add_executable(${EXE} n4app.cc)
+add_executable(${EXE} lxe_sphere.cc)
 
 target_link_libraries(
   ${EXE}

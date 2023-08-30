@@ -54,8 +54,7 @@
   in rec {
 
     # packages.default = pkgs.stdenv.mkDerivation { stdenv = pkgs.clang_16.stdenv; } {
-    #   # CHANGEME-pname: replace "my-package" with a name better-suited to your project
-    #   pname = "my-package";
+    #   pname = "lx_sphere";
     #   version = "0.0.1";
     #   src = "${self}/src";
     #   # TODO nativeBuildInputs =

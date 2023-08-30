@@ -1,6 +1,5 @@
 {
-  #CHANGEME-flake-description: keep it short (1 line).
-  description = "flake.nix line 2: Change this to describe your project";
+  description = "flake.nix line 2: Noble liquid spheric TPC for CEnuNS detection";
 
   inputs = {
     nain4  .url     = "github:jacg/nain4";
